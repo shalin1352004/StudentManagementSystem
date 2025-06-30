@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Faculty Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <style>
+    body {
+      background: linear-gradient(to right, #4f46e5, #3b82f6);
+      font-family: 'Segoe UI', sans-serif;
+    }
+  </style>
+</head>
+<body class="min-h-screen text-white">
+
+  <!-- ✅ Navbar -->
+
+  <nav class="bg-white/10 backdrop-blur-lg px-6 py-4 shadow-md flex justify-between items-center">
+    <a href="{% url 'home' %}" class="text-3xl border-2-x font-bold text-white hover:text-yellow-300 transition duration-300 animate-pulse">
+  🎓 Student System
+</a>
+
+    <div class="space-x-4">
+      {% if not user.is_authenticated %}
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+          <a href="{% url 'signup' %}" data-aos="fade-up" class="bg-pink-700 text-black font-bold py-2 px-4 rounded-xl hover:bg-pink-400 transition duration-300">
+            📝 Signup
+          </a>
+
+          <a href="{% url 'login' %}" data-aos="fade-up" class="bg-blue-700 text-black font-bold py-2 px-4 rounded-xl border-2 border-black-300 hover:bg-blue-400 transition duration-300">
+            🔐 Login
+          </a>
+        </div>
+        {% endif %}
+
+        {% if user.is_authenticated %}
+        <a href="{% url 'profile' %}" data-aos="fade-up" class="block w-full bg-pink-300 text-black font-bold py-2 px-4 rounded-xl hover:bg-pink-400 transition duration-300 mt-4">
+          🙍‍♂️{{user.username}}
+        </a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <!-- ✅ Login Form -->
+  <div class="flex items-center justify-center min-h-screen text-white px-4">
+    <div class="bg-white text-black w-full max-w-xl p-8 rounded-xl shadow-lg" data-aos="zoom-in">
+      <h2 class="text-3xl font-bold mb-6 text-center text-indigo-600">Faculty Login</h2>
+
+      <form action="{% url 'login' %}" method="post" class="space-y-4">
+        {% csrf_token %}
+        <div>
+          <label for="username" class="block font-semibold mb-1">Username</label>
+          <input type="text" id="username" name="username" class="w-full border border-gray-300 rounded-md p-2" required>
+        </div>
+
+        <div>
+          <label for="password" class="block font-semibold mb-1">Password</label>
+          <input type="password" id="password" name="password" class="w-full border border-gray-300 rounded-md p-2" required>
+        </div>
+
+        <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-md font-semibold hover:bg-indigo-700 transition duration-300">
+         Login
+        </button>
+      </form>
+
+      <a href="{% url 'home' %}" class="block text-center mt-4 text-sm text-indigo-500 hover:underline">⬅ Back to Home</a>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>AOS.init({ duration: 800 });</script>
+</body>
+</html>

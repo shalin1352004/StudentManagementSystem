@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ student.name }} - Details</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #4f46e5, #3b82f6);
+      font-family: 'Segoe UI', sans-serif;
+    }
+  </style>
+</head>
+<body class="min-h-screen text-white">
+
+  <!-- Back Button -->
+  
+
+  <!-- Card -->
+  <div class="max-w-3xl mx-auto bg-white text-black rounded-xl shadow-lg p-10" data-aos="zoom-in">
+    <h1 class="text-4xl font-bold mb-6 text-center text-indigo-700">🎓 Student Information</h1>
+<div class="px-6 py-4">
+    <a href="{% url 'student_dashboard' %}" class="inline-block bg-white text-indigo-700 font-semibold px-4 py-2 rounded shadow hover:bg-gray-100 transition duration-300">
+      ⬅ Back to Students
+    </a>
+  </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-lg">
+      <div>
+        <p><span class="font-semibold">Enrollment No:</span> {{ student.enrollmentNo }}</p>
+        <p><span class="font-semibold">Name:</span> {{ student.name }}</p>
+        <p><span class="font-semibold">Age:</span> {{ student.age }}</p>
+      
+        <p><span class="font-semibold">Email:</span> {{ student.email }}</p>
+        <p><span class="font-semibold">Enrolled On:</span> {{ student.enrollment_date }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- AOS Animation -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>AOS.init({ duration: 800 });</script>
+</body>
+</html>

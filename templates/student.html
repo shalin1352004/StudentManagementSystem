@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Student List</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <style>
+    body {
+      background: linear-gradient(to right, #6366f1, #3b82f6);
+      font-family: 'Segoe UI', sans-serif;
+    }
+  .clickable-row {
+    cursor: pointer;
+    display: table-row;
+  }
+  </style>
+</head>
+<body class="text-white p-6">
+
+  <div class="max-w-6xl mx-auto bg-white rounded-lg shadow-2xl p-8 text-black relative" data-aos="fade-up">
+
+    <!-- Top Bar -->
+    <div class="flex justify-between items-center mb-6">
+      <a href="{% url 'home' %}" class="bg-indigo-500 text-white font-semibold py-2 px-4 rounded hover:bg-indigo-600 transition duration-300">
+        ⬅ Back to Home
+      </a>
+      <h1 class="text-3xl font-bold text-center text-indigo-600 flex-grow text-center">📋 Student Records</h1>
+      <div class="w-36"></div> <!-- spacer to center title -->
+    </div>
+
+    <!-- Student Table -->
+    <div class="overflow-auto">
+      <table class="min-w-full table-auto border-collapse mt-2">
+        <thead class="bg-indigo-100 text-gray-800">
+          <tr>
+            <th class="px-4 py-2 border">Enrollment No</th>
+            <th class="px-4 py-2 border">Name</th>
+            <th class="px-4 py-2 border">Age</th>
+            <th class="px-4 py-2 border">Email</th>
+            <th class="px-4 py-2 border">Enrolled On</th>
+          </tr>
+        </thead>
+        <tbody>
+  {% for student in students %}
+    <tr class="clickable-row hover:bg-indigo-100 transition duration-300" onclick="window.location='{% url 'student_detail' student.enrollmentNo %}'">
+      <td class="px-4 py-2 border">{{ student.enrollmentNo }}</td>
+      <td class="px-4 py-2 border">{{ student.name }}</td>
+      <td class="px-4 py-2 border">{{ student.age }}</td>
+      <td class="px-4 py-2 border">{{ student.email }}</td>
+      <td class="px-4 py-2 border">{{ student.enrollment_date }}</td>
+    </tr>
+  {% empty %}
+    <tr>
+      <td colspan="5" class="text-center py-4">No students found.</td>
+    </tr>
+  {% endfor %}
+</tbody>
+
+      </table>
+    </div>
+
+    <!-- Bottom Right Add Button -->
+    <div class="flex justify-end mt-6">
+      <a href="{% url 'add_student' %}" class="bg-green-500 text-white font-semibold py-3 px-6 rounded-lg shadow hover:bg-green-600 transition duration-300">
+        + Add Student
+      </a>
+      
+    </div>
+
+  </div>
+
+  <!-- AOS Animation Init -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000 });
+  </script>
+</body>
+</html>

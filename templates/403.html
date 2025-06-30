@@ -1,0 +1,16 @@
+<!-- templates/403.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>403 Forbidden</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-red-100 text-center">
+  <div class="p-10 bg-white rounded-xl shadow-lg">
+    <h1 class="text-4xl font-bold text-red-600 mb-4">🚫 403 Forbidden</h1>
+    <p class="text-lg text-gray-700">You are already logged in and cannot access this page.</p>
+    <a href="{% url 'home' %}" class="mt-6 inline-block bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600">Go to Home</a>
+  </div>
+</body>
+</html>

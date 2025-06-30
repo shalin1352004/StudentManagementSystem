@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Result</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #4f46e5, #3b82f6);
+      font-family: 'Segoe UI', sans-serif;
+    }
+  </style>
+</head>
+<body class="text-white p-6">
+
+  <!-- Container -->
+  <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-xl p-8 text-black" data-aos="fade-up">
+
+    <!-- Top Row -->
+    <div class="flex justify-between items-center mb-6">
+      <a href="{% url 'home' %}" class="bg-indigo-500 text-white font-semibold py-2 px-4 rounded hover:bg-indigo-600 transition duration-300">
+        ⬅ Back to Home
+      </a>
+      <h2 class="text-3xl font-bold text-indigo-600 text-center flex-grow">📄 Add Result</h2>
+      <div class="w-40"></div> <!-- Spacer for center alignment -->
+    </div>
+
+    <!-- Flash Messages -->
+    {% if messages %}
+      <div class="mb-4 space-y-2">
+        {% for message in messages %}
+          <div class="px-4 py-2 rounded-md text-sm font-semibold 
+            {% if message.tags == 'error' %}
+              bg-red-100 text-red-700 border border-red-300
+            {% elif message.tags == 'success' %}
+              bg-green-100 text-green-700 border border-green-300
+            {% else %}
+              bg-blue-100 text-blue-700 border border-blue-300
+            {% endif %}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <!-- Add Result Form -->
+    <form action="{% url 'add_result' %}" method="post" class="space-y-4">
+      {% csrf_token %}
+
+      <div>
+        <label for="RollNo" class="block font-semibold mb-1">Roll No</label>
+        <input type="number" name="RollNo" id="RollNo" class="w-full border border-gray-300 rounded-md p-2" required>
+      </div>
+
+      <div>
+        <label for="student_name" class="block font-semibold mb-1">Student Name</label>
+        <input type="text" name="student_name" id="student_name" class="w-full border border-gray-300 rounded-md p-2" required>
+      </div>
+
+      <div>
+        <label for="marksofsub1" class="block font-semibold mb-1">Maths</label>
+        <input type="number" name="marksofsub1" id="marksofsub1" class="w-full border border-gray-300 rounded-md p-2" required>
+      </div>
+
+      <div>
+        <label for="marksofsub2" class="block font-semibold mb-1">Science</label>
+        <input type="number" name="marksofsub2" id="marksofsub2" class="w-full border border-gray-300 rounded-md p-2" required>
+      </div>
+
+      <div>
+        <label for="marksofsub3" class="block font-semibold mb-1">English</label>
+        <input type="number" name="marksofsub3" id="marksofsub3" class="w-full border border-gray-300 rounded-md p-2" required>
+      </div>
+
+      <div>
+        <label for="marksofsub4" class="block font-semibold mb-1">Social Studies</label>
+        <input type="number" name="marksofsub4" id="marksofsub4" class="w-full border border-gray-300 rounded-md p-2" required>
+      </div>
+
+      <div class="flex justify-end pt-4">
+        <button type="submit" class="bg-green-600 text-white py-2 px-6 rounded-md font-semibold hover:bg-indigo-700 transition duration-300">
+          ➕ Add Result
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>AOS.init({ duration: 800 });</script>
+</body>
+</html>
