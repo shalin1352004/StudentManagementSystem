@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>{{ student.student_name }} - Result Details</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
@@ -16,16 +17,17 @@
 <body class="text-white min-h-screen py-8 px-4">
 
   <!-- Back Button -->
-  
-
-  <!-- Main Content Box -->
-  <div class="max-w-6xl mx-auto bg-white text-black rounded-2xl shadow-xl p-8">
-    <h1 class="text-4xl font-bold mb-6 text-center text-indigo-700">📊 Result Details - {{ student.student_name }}</h1>
-<div class="max-w-6xl mx-auto mb-6 flex justify-start">
+  <div class="max-w-6xl mx-auto mb-6 flex justify-start">
     <a href="{% url 'result_view' %}" class="bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold shadow hover:bg-indigo-500 transition duration-300">
       ⬅ Back to Results
     </a>
   </div>
+
+  <!-- Main Content -->
+  <div class="max-w-6xl mx-auto bg-white text-black rounded-2xl shadow-xl p-8">
+    <h1 class="text-4xl font-bold mb-6 text-center text-indigo-700">📊 Result Details - {{ student.student_name }}</h1>
+
+    <!-- Summary Details -->
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-lg font-medium mb-10">
       <div class="bg-indigo-50 rounded-lg p-4 shadow">🎓 <strong>Roll No:</strong> {{ student.RollNo }}</div>
       <div class="bg-indigo-50 rounded-lg p-4 shadow">👤 <strong>Name:</strong> {{ student.student_name }}</div>
@@ -34,20 +36,27 @@
       <div class="bg-indigo-50 rounded-lg p-4 shadow">📈 <strong>Percentage:</strong> {{ percentage }}%</div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <!-- Charts Section -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Pie Chart -->
       <div class="bg-indigo-50 rounded-xl p-4 shadow">
-        <h2 class="text-center text-lg font-semibold text-indigo-700 mb-2">📊 Subject-wise Pie Chart</h2>
-        <canvas id="pieChart"></canvas>
+        <h2 class="text-center text-lg font-semibold text-indigo-700 mb-4">📊 Subject-wise Pie Chart</h2>
+        <div class="relative w-full h-72 sm:h-96">
+          <canvas id="pieChart" class="w-full h-full"></canvas>
+        </div>
       </div>
 
+      <!-- Bar Chart -->
       <div class="bg-indigo-50 rounded-xl p-4 shadow">
-        <h2 class="text-center text-lg font-semibold text-indigo-700 mb-2">📊 Marks Distribution (Bar)</h2>
-        <canvas id="barChart"></canvas>
+        <h2 class="text-center text-lg font-semibold text-indigo-700 mb-4">📊 Marks Distribution (Bar)</h2>
+        <div class="relative w-full h-72 sm:h-96">
+          <canvas id="barChart" class="w-full h-full"></canvas>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Chart.js Script -->
+  <!-- Chart Scripts -->
   <script>
     const marks = [
       {{ student.marksofsub1 }},
@@ -59,6 +68,7 @@
     const labels = ["Maths", "Science", "English", "Social Studies"];
     const colors = ["#6366f1", "#10b981", "#f59e0b", "#ef4444"];
 
+    // Pie Chart
     new Chart(document.getElementById('pieChart'), {
       type: 'pie',
       data: {
@@ -69,6 +79,8 @@
         }]
       },
       options: {
+        responsive: true,
+        maintainAspectRatio: false,
         plugins: {
           legend: {
             position: 'bottom'
@@ -77,6 +89,7 @@
       }
     });
 
+    // Bar Chart
     new Chart(document.getElementById('barChart'), {
       type: 'bar',
       data: {
@@ -85,10 +98,12 @@
           label: 'Marks',
           data: marks,
           backgroundColor: colors,
-          borderRadius: 8,
+          borderRadius: 6,
         }]
       },
       options: {
+        responsive: true,
+        maintainAspectRatio: false,
         scales: {
           y: {
             beginAtZero: true,

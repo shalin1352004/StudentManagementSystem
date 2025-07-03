@@ -6,6 +6,7 @@
   <title>Add Result</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
       background: linear-gradient(to right, #4f46e5, #3b82f6);
@@ -13,18 +14,18 @@
     }
   </style>
 </head>
-<body class="text-white p-6">
+<body class="text-white px-4 py-6 sm:px-6 md:px-10">
 
   <!-- Container -->
-  <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-xl p-8 text-black" data-aos="fade-up">
+  <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-xl p-6 sm:p-8 text-black" data-aos="fade-up">
 
     <!-- Top Row -->
-    <div class="flex justify-between items-center mb-6">
-      <a href="{% url 'home' %}" class="bg-indigo-500 text-white font-semibold py-2 px-4 rounded hover:bg-indigo-600 transition duration-300">
+    <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
+      <a href="{% url 'home' %}" class="bg-indigo-500 text-white font-semibold py-2 px-4 rounded hover:bg-indigo-600 transition duration-300 w-full sm:w-auto text-center">
         ⬅ Back to Home
       </a>
-      <h2 class="text-3xl font-bold text-indigo-600 text-center flex-grow">📄 Add Result</h2>
-      <div class="w-40"></div> <!-- Spacer for center alignment -->
+      <h2 class="text-2xl sm:text-3xl font-bold text-indigo-600 text-center w-full">📄 Add Result</h2>
+      <div class="hidden sm:block w-40"></div>
     </div>
 
     <!-- Flash Messages -->
@@ -59,28 +60,31 @@
         <input type="text" name="student_name" id="student_name" class="w-full border border-gray-300 rounded-md p-2" required>
       </div>
 
-      <div>
-        <label for="marksofsub1" class="block font-semibold mb-1">Maths</label>
-        <input type="number" name="marksofsub1" id="marksofsub1" class="w-full border border-gray-300 rounded-md p-2" required>
-      </div>
+      <!-- Subject Fields -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="marksofsub1" class="block font-semibold mb-1">Maths</label>
+          <input type="number" name="marksofsub1" id="marksofsub1" class="w-full border border-gray-300 rounded-md p-2" required>
+        </div>
 
-      <div>
-        <label for="marksofsub2" class="block font-semibold mb-1">Science</label>
-        <input type="number" name="marksofsub2" id="marksofsub2" class="w-full border border-gray-300 rounded-md p-2" required>
-      </div>
+        <div>
+          <label for="marksofsub2" class="block font-semibold mb-1">Science</label>
+          <input type="number" name="marksofsub2" id="marksofsub2" class="w-full border border-gray-300 rounded-md p-2" required>
+        </div>
 
-      <div>
-        <label for="marksofsub3" class="block font-semibold mb-1">English</label>
-        <input type="number" name="marksofsub3" id="marksofsub3" class="w-full border border-gray-300 rounded-md p-2" required>
-      </div>
+        <div>
+          <label for="marksofsub3" class="block font-semibold mb-1">English</label>
+          <input type="number" name="marksofsub3" id="marksofsub3" class="w-full border border-gray-300 rounded-md p-2" required>
+        </div>
 
-      <div>
-        <label for="marksofsub4" class="block font-semibold mb-1">Social Studies</label>
-        <input type="number" name="marksofsub4" id="marksofsub4" class="w-full border border-gray-300 rounded-md p-2" required>
+        <div>
+          <label for="marksofsub4" class="block font-semibold mb-1">Social Studies</label>
+          <input type="number" name="marksofsub4" id="marksofsub4" class="w-full border border-gray-300 rounded-md p-2" required>
+        </div>
       </div>
 
       <div class="flex justify-end pt-4">
-        <button type="submit" class="bg-green-600 text-white py-2 px-6 rounded-md font-semibold hover:bg-indigo-700 transition duration-300">
+        <button type="submit" class="bg-green-600 text-white py-2 px-6 rounded-md font-semibold hover:bg-indigo-700 transition duration-300 w-full sm:w-auto">
           ➕ Add Result
         </button>
       </div>

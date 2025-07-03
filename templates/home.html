@@ -28,31 +28,36 @@
 <body class="text-white">
 
   <!-- Navbar -->
-  <nav class="bg-white/10 backdrop-blur-lg px-6 py-4 shadow-md flex justify-between items-center">
-<a href="{% url 'home' %}" class="text-3xl border-2-x font-bold text-white hover:text-yellow-300 transition duration-300 animate-pulse">
-  🎓 Student System
-</a>
+  <nav class="bg-white/10 backdrop-blur-lg px-4 sm:px-6 py-4 shadow-md flex flex-col sm:flex-row justify-between items-center gap-3">
+    <a href="{% url 'home' %}" class="text-2xl sm:text-3xl font-bold text-white hover:text-yellow-300 transition duration-300 animate-pulse text-center">
+      🎓 Student System
+    </a>
 
-    <div class="space-x-4">
+    <div class="flex flex-col sm:flex-row gap-2">
       {% if user.is_authenticated %}
-        <a href="{% url 'profile' %}" class=" bg-pink-300 text-black font-bold py-2 px-4 rounded-xl hover:bg-pink-400 font-semibold  transition ">👤 {{ user.first_name }}</a>
-        <a href="{% url 'logout' %}" class="bg-purple-300 text-black font-bold py-2 px-4 rounded-xl hover:bg-purple-400 font-semibold  transition">Logout</a>
+        <a href="{% url 'profile' %}" class="bg-pink-300 text-black font-bold py-2 px-4 rounded-xl hover:bg-pink-400 transition text-center">👤 {{ user.first_name }}</a>
+        <a href="{% url 'logout' %}" class="bg-purple-300 text-black font-bold py-2 px-4 rounded-xl hover:bg-purple-400 transition text-center">Logout</a>
       {% else %}
-        <a href="{% url 'signup' %}" class="bg-purple-300 text-black font-bold py-2 px-4 rounded-xl hover:bg-purple-400 transition duration-300">📝 Signup</a>
-        <a href="{% url 'login' %}" class="bg-pink-300 text-black font-bold py-2 px-4 rounded-xl hover:bg-pink-400 transition duration-300">🔐 Login</a>
+        <a href="{% url 'signup' %}" class="bg-purple-300 text-black font-bold py-2 px-4 rounded-xl hover:bg-purple-400 transition text-center">📝 Signup</a>
+        <a href="{% url 'login' %}" class="bg-pink-300 text-black font-bold py-2 px-4 rounded-xl hover:bg-pink-400 transition text-center">🔐 Login</a>
       {% endif %}
     </div>
   </nav>
 
   <!-- Page Content -->
   <div class="min-h-screen flex flex-col items-center justify-center text-center px-4">
-    <div class="bg-black/10 backdrop-blur-md p-10 rounded-3xl border border-black/40 shadow-xl w-full max-w-3xl  animate__animated animate__zoomIn">
-      <h1 class="text-5xl font-bold  mb-4 animate__animated animate__fadeInDown">Student Management System</h1>
-      <p class="text-xl mb-8 animate__animated animate__fadeInUp animate__delay-1s">Manage student data, results, and more!</p>
+    <div class="bg-black/10 backdrop-blur-md p-6 sm:p-10 rounded-3xl border border-black/40 shadow-xl w-full max-w-3xl animate__animated animate__zoomIn">
 
-      <div class="space-y-4 ">
+      <h1 class="text-3xl sm:text-5xl font-bold mb-4 animate__animated animate__fadeInDown">
+        Student Management System
+      </h1>
+      <p class="text-base sm:text-xl mb-8 animate__animated animate__fadeInUp animate__delay-1s">
+        Manage student data, results, and more!
+      </p>
+
+      <div class="space-y-4 w-full">
         {% if user.is_authenticated %}
-          <a href="{% url 'student_dashboard' %}" data-aos="fade-right" class="block border-black/20 w-full bg-yellow-300 text-black font-bold py-3 px-6 rounded-xl shadow-lg hover:bg-yellow-400 transition duration-300">
+          <a href="{% url 'student_dashboard' %}" data-aos="fade-right" class="block w-full bg-yellow-300 text-black font-bold py-3 px-6 rounded-xl shadow-lg hover:bg-yellow-400 transition duration-300">
             📚 View Student Data
           </a>
           <a href="{% url 'result_view' %}" data-aos="fade-left" class="block w-full bg-green-300 text-black font-bold py-3 px-6 rounded-xl shadow-lg hover:bg-green-400 transition duration-300">
@@ -68,7 +73,9 @@
         {% endif %}
       </div>
 
-      <p class="text-sm mt-8 text-gray-200 animate__animated animate__fadeInUp animate__delay-1s">Designed for Admin, Faculty & Students</p>
+      <p class="text-sm mt-8 text-gray-200 animate__animated animate__fadeInUp animate__delay-1s">
+        Designed for Admin, Faculty & Students
+      </p>
     </div>
   </div>
 
